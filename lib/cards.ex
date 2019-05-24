@@ -3,6 +3,9 @@ defmodule Cards do
     Provides methods for creating and handling a deck of cards
   """
 
+  @doc """
+    Returns a list of strings representing a deck of playing cards
+  """
   def create_deck do
     values = ["Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King", "Ace"]
     suits = ["Spades", "Clubs", "Hearts", "Diamonds"]
@@ -12,20 +15,35 @@ defmodule Cards do
     end
   end
 
+  @doc """
+    Returns a shuffled list accepts a deck 
+  """
   def shuffle(deck) do
-    Enum.shuffle(deck) # shuffled list
+    Enum.shuffle(deck)
   end
 
   def contains?(deck, card) do
     Enum.member?(deck, card) # boolean
   end
 
+  @doc """
+    Divides a deck into a hand and the remainder of the deck.
+    The `hand_size` argument indicates how many cards should
+    be in the hand.
+
+  ## Examples
+
+      iex> deck = Cards.create_deck
+      iex> {hand, deck} = Cards.deal(deck, 1)
+      iex> hand
+      ["Ace of Spades"]
+  """
   def deal(deck, hand_size) do
-    Enum.split(deck, hand_size) # { hand: [], deck: [] }
+    Enum.split(deck, hand_size)
   end
 
   def save(deck, filename) do
-    binary = :erlang.term_to_binary(deck) # erlang object that can be written
+    binary = :erlang.term_to_binary(deck)
     File.write(filename, binary)
   end
 
