@@ -63,6 +63,10 @@ defmodule Cards do
     end
   end
 
+  @doc """
+    Creates a deck, shuffles it and returns a hand of the
+    `hand_size` provided and the remaining deck.   
+  """
   def create_hand(hand_size) do
     Cards.create_deck
     |> Cards.shuffle
